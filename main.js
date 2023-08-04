@@ -1,7 +1,7 @@
 //LINKED LISTS PRACTICE
 
 // class Node{
-//     constructor(data,next){
+//     constructor(data){
 //         this.data = data
 //         this.next = next
 //     }
@@ -15,7 +15,7 @@ class LinkedList{
     getSize(){
         let counter = 0
         let currentNode = this.head
-        while(currentNode){
+        while(currentNode){ 
             counter++
             currentNode = currentNode.next
         }
@@ -219,13 +219,13 @@ console.log(stack.isEmpty())
 //BST PRACTICE
 // - each parent has at most 2 children
 // - left node is always less than right
-class Node {
-    constructor(value){
-        this.value = value
-        this.right = null
-        this.left = null
-    }
-}
+// class Node {
+//     constructor(value){
+//         this.value = value
+//         this.right = null
+//         this.left = null
+//     }
+// }
 
 class BinarySearchTree{
     constructor(){
@@ -276,3 +276,56 @@ binaryTree.insert(8)
 binaryTree.insert(10)
 binaryTree.insert(9)
 console.log(binaryTree.find(5))
+
+//STACKS WITH LINKEDLISTS
+
+class Node {
+    constructor(data){
+        this.value = value
+        this.next
+    }
+}
+
+class LinkedStack{
+    constructor(){
+        this.head = null
+    }
+    getSize(){
+        let counter = 0
+        let currentNode = this.head
+        while(currentNode){
+            counter++
+            currentNode = currentNode.next
+        }
+        return counter
+    }
+    //push
+    push(data){
+        const newNode = new Node(data)
+        if(this.head === null){
+            this.head = newNode
+        } else{
+            newNode.next = this.head
+            this.head = newNode
+        }
+    }
+    //pop
+    pop(){
+        let currentNode = this.head
+        while(currentNode){
+            if(currentNode.next === null){
+                currentNode = null
+            }
+            currentNode = currentNode.next
+        }
+    }
+    //peek
+
+}
+
+const stack = new LinkedStack()
+
+stack.push('1')
+stack.push('2')
+stack.push('3')
+console.log(stack)
