@@ -280,9 +280,10 @@ console.log(binaryTree.find(5))
 //STACKS WITH LINKEDLISTS
 
 class Node {
-    constructor(data){
+    constructor(data,priority){
         this.data = data
         this.next
+        this.priority = priority
     }
 }
 
@@ -311,8 +312,11 @@ class LinkedStack{
     }
     //pop
     pop(){
+        let oldHead = this.head
         const newHead = this.head.next
         this.head = newHead
+        return oldHead
+
     }
     //peek
     peek(position){
@@ -377,7 +381,10 @@ class linkedQueue{
             while(currentNode){
                 counter++
                 if(counter===(endPos-1)){
+                    const lastNode = currentNode.next
                     currentNode.next = null
+                    //return currentNode.next
+                    return lastNode
                 }
                 currentNode = currentNode.next
             }
@@ -403,11 +410,44 @@ const queue = new linkedQueue()
 queue.enqueue(1)
 queue.enqueue(2)
 queue.enqueue(3)
-console.log('before dq',queue)
+//console.log('before dq',queue)
 queue.dequeue()
 queue.dequeue()
 queue.dequeue()
 queue.dequeue()
 
 
-console.log('after dq',queue)
+//console.log('after dq',queue)
+
+//PRIORITY QUEUE WTH A LINKEDLIST
+
+
+
+class priorityLinkedQueue{
+    constructor(){
+        this.head  = null
+    }
+    //enqueue by priority higher, priority means closer to tail
+    enqueue(data,priority){
+        const newNode = new Node(data,priority)
+        if(this.head === null){
+            this.head  = newNode
+        }else{
+            let currentNode = this.head
+            while(currentNode.priority < newNode.priority){
+                currentNode = currentNode.next
+            }
+            newNode.next = currentNode.next
+            currentNode.next  = newNode
+        }
+
+    }
+    //peek returns highest priority node
+    peek(){
+
+    }
+    //remove and return highest priority node
+    dequeue(){
+
+    }
+}
