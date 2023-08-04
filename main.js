@@ -226,7 +226,7 @@ console.log(stack.isEmpty())
 //         this.left = null
 //     }
 // }
-
+/*
 class BinarySearchTree{
     constructor(){
         this.root = null
@@ -276,12 +276,12 @@ binaryTree.insert(8)
 binaryTree.insert(10)
 binaryTree.insert(9)
 console.log(binaryTree.find(5))
-
+*/
 //STACKS WITH LINKEDLISTS
 
 class Node {
     constructor(data){
-        this.value = value
+        this.data = data
         this.next
     }
 }
@@ -311,21 +311,96 @@ class LinkedStack{
     }
     //pop
     pop(){
-        let currentNode = this.head
+        const newHead = this.head.next
+        this.head = newHead
+    }
+    //peek
+    peek(position){
+        let counter = 0
+        let currentNode = this.head 
         while(currentNode){
-            if(currentNode.next === null){
-                currentNode = null
+            counter++
+            if(counter === position){
+                return currentNode
             }
             currentNode = currentNode.next
         }
     }
-    //peek
 
 }
-
 const stack = new LinkedStack()
 
 stack.push('1')
 stack.push('2')
 stack.push('3')
+stack.push('4')
+stack.push('5')
+stack.push('6')
+stack.pop()
+
+console.log(stack.peek(3))
 console.log(stack)
+
+class linkedQueue{
+    constructor(){
+        this.head = null
+    }
+    getSize(){
+        let counter = 0
+        let currentNode = this.head
+        while(currentNode){
+            counter++
+            currentNode = currentNode.next
+        }
+        return counter
+    }
+    //enqueue
+    enqueue(data){
+        const newNode = new Node(data)
+        if(this.head === null){
+            this.head = newNode
+        } else{
+            newNode.next =  this.head
+            this.head = newNode
+        }
+    }
+    //dequeue
+    dequeue(){
+        const lastNodePos = this.getSize()
+        console.log('lastNodePos',lastNodePos)
+        let counter = 0
+        let currentNode = this.head
+        console.log('counter ', counter)
+        console.log('currentNode ', currentNode)
+        while(currentNode){
+            counter++
+            if(counter === lastNodePos){
+                currentNode = null
+            }
+            currentNode = currentNode.next
+        }
+
+    }
+    //peek
+    peek(positon){
+        let counter = 0
+        let currentNode = this.head
+        while(currentNode){
+            counter++
+            if(counter === position){
+                return currentNode
+            }
+            currentNode = currentNode.next
+        }
+    }
+
+}
+
+const queue = new linkedQueue()
+queue.enqueue(1)
+queue.enqueue(2)
+queue.enqueue(3)
+console.log(queue)
+queue.dequeue()
+queue.dequeue()
+console.log(queue)
