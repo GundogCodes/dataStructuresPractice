@@ -338,8 +338,8 @@ stack.push('5')
 stack.push('6')
 stack.pop()
 
-console.log(stack.peek(3))
-console.log(stack)
+//console.log(stack.peek(3))
+//console.log(stack)
 
 class linkedQueue{
     constructor(){
@@ -366,18 +366,21 @@ class linkedQueue{
     }
     //dequeue
     dequeue(){
-        const lastNodePos = this.getSize()
-        console.log('lastNodePos',lastNodePos)
+    
+        let endPos = this.getSize()
         let counter = 0
         let currentNode = this.head
-        console.log('counter ', counter)
-        console.log('currentNode ', currentNode)
-        while(currentNode){
-            counter++
-            if(counter === lastNodePos){
-                currentNode = null
+        if(endPos === 1){
+            this.head = null
+        } else{
+
+            while(currentNode){
+                counter++
+                if(counter===(endPos-1)){
+                    currentNode.next = null
+                }
+                currentNode = currentNode.next
             }
-            currentNode = currentNode.next
         }
 
     }
@@ -400,7 +403,11 @@ const queue = new linkedQueue()
 queue.enqueue(1)
 queue.enqueue(2)
 queue.enqueue(3)
-console.log(queue)
+console.log('before dq',queue)
 queue.dequeue()
 queue.dequeue()
-console.log(queue)
+queue.dequeue()
+queue.dequeue()
+
+
+console.log('after dq',queue)
